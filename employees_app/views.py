@@ -18,17 +18,25 @@ def employees(request):
 def add_employee(request):
     if request.method == "POST":
         form = AddEmployee(request.POST)
-        if form.is_valid():
+        if form.is_valid(): # this part makes trouble:
             employee = form
             employee.save()
-            #return redirect('employees_app:edit_employee', id=employee.id)
             return redirect('employees_app:employees')
     else:
+        print("error")
         form = AddEmployee()
     return render(request, 'employees_app/add_employee.html', {'form': form})
 
 
 # Edit Employee:
 def edit_employee(request, id):
-    employee = Employees.objects.get(id = id)
-    return render(request, 'employees_app/edit_employee.html', {'employee': employee})
+    employee = Employees.objects.get(id=id)
+    if request.method == "POST":
+        form = AddEmployee(request.POST, instance=employee)
+        if form.is_valid():
+            employee = form
+            employee.save()
+            return redirect('employees_app:edit_employee', id=employee.id)
+    else:
+        form = AddEmployee(instance=employee)
+    return render(request, 'employees_app/edit_employee.html', {'form': form})

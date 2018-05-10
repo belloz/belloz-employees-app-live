@@ -8,8 +8,9 @@
     <table class="table table-hover table-sm ">
       <thead>
         <tr>
-            <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">E-mail</th>
             <th scope="col">Address</th>
             <th scope="col">State</th>
             <th scope="col">Postal code</th>
@@ -21,15 +22,15 @@
             <th scope="col">Work on heights</th>
             <th scope="col">Worker health safety</th>
             <th scope="col">Propane in construction</th>
-            <th scope="col">Notes</th>
             <th scope="col">Edit</th>
         </tr>
       </thead>
 
       {% for employee in employees_list %}
       <tbody>
-        <td>{{ employee.first_name }}</td>
         <td>{{ employee.last_name }}</td>
+        <td>{{ employee.first_name }}</td>
+        <td>{{ employee.email }}</td>
         <td>{{ employee.address }}</td>
         <td>{{ employee.state }}</td>
         <td>{{ employee.postal_code }}</td>
@@ -41,7 +42,6 @@
         <td>{{ employee.work_heights }}</td>
         <td>{{ employee.worker_health_safety }}</td>
         <td>{{ employee.propane_in_construction }}</td>
-        <td>{{ employee.note }}</td>
         <td><a href="{% url 'employees_app:edit_employee' id=employee.id %}" class="btn btn-outline-primary">EDIT</a></td>
       </tbody>
       {% endfor %}
