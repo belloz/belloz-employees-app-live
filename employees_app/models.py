@@ -42,6 +42,7 @@ class Employees(models.Model):
     address = models.CharField(max_length=128)
     state = models.CharField(max_length=2, choices=STATE, default="")
     postal_code = models.CharField(max_length=10)
+    city = models.CharField(max_length=90, blank=True, null=True)
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length=16)
 
