@@ -23,7 +23,6 @@ def add_employee(request):
             employee.save()
             return redirect('employees_app:employees')
     else:
-        print("error")
         form = AddEmployee()
     return render(request, 'employees_app/add_employee.html', {'form': form})
 
