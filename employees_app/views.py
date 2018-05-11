@@ -7,12 +7,12 @@ from datetime import datetime
 
 
 def index(request):
-    return render(request, 'employees_app/index.html', {})
+    return render(request, 'employees_app/index.html', {'nbar': 'home'})
 
 # Display Employees:
 def employees(request):
     employees_list = Employees.objects.all().order_by('last_name')
-    return render(request, 'employees_app/employees.html', {'employees_list': employees_list})
+    return render(request, 'employees_app/employees.html', {'employees_list': employees_list, 'nbar': 'em'})
 
 # Add Employee:
 def add_employee(request):
@@ -25,7 +25,7 @@ def add_employee(request):
             return redirect('employees_app:index')
     else:
         form = AddEmployee()
-    return render(request, 'employees_app/add_employee.html', {'form': form})
+    return render(request, 'employees_app/add_employee.html', {'form': form, 'nbar': 'add_em'})
 
 
 # Edit Employee:
@@ -35,10 +35,16 @@ def edit_employee(request, id):
         form = AddEmployee(request.POST, instance=employee)
         if form.is_valid():
             employee.save()
-            return redirect('employees_app:edit_employee', id=employee.id)
+            return redirect('employees_app:employees')
     else:
         form = AddEmployee(instance=employee)
-    return render(request, 'employees_app/404.html', {'form': form})
+    return render(request, 'employees_app/edit_employee.html', {'form': form})
+
+# Remove Employee:
+#def remove_employee(request, id):
+#    employee = Employees.objects.id(id=id)
+#    employee.delete()
+#    return redirect('employees_app:employees')
 
 # 404 Error:
 def error404(request):

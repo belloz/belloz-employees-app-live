@@ -20,6 +20,7 @@ class Employees(models.Model):
         ('Office_Staff', 'Office_Staff'),
         ('Shingler', 'Shingler'),
     )
+
     STATUS = (
         ('Citizen', 'Citizen'),
         ('Permanent_Resident', 'Permanent_Resident'),
