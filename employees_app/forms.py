@@ -4,6 +4,7 @@ from .models import Employees
 
 class AddEmployee(forms.ModelForm):
     class Meta:
+
         model = Employees
         fields = (
             'first_name',
@@ -16,7 +17,7 @@ class AddEmployee(forms.ModelForm):
             'date_of_birth',
             'phone_number',
             'employed_from',
-
+            'employed_until',
             'sin',
             'position',
             'wage',
@@ -30,18 +31,19 @@ class AddEmployee(forms.ModelForm):
             'propane_in_construction',
             'note',
         )
+
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-control'}),
             'postal_code': forms.TextInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.DateInput(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
             'employed_from': forms.DateInput(attrs={'class': 'form-control'}),
-
+            'employed_until': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
             'sin': forms.TextInput(attrs={'class': 'form-control'}),
             'position': forms.Select(attrs={'class': 'form-control'}),
             'wage': forms.TextInput(attrs={'class': 'form-control'}),
@@ -53,7 +55,5 @@ class AddEmployee(forms.ModelForm):
             'work_heights': forms.Select(attrs={'class': 'form-control'}),
             'worker_health_safety': forms.Select(attrs={'class': 'form-control'}),
             'propane_in_construction': forms.Select(attrs={'class': 'form-control'}),
-            'note': forms.Textarea(attrs={'class': 'form-control'}),
+            'note': forms.Textarea(attrs={'class': 'form-control', 'placeholder': ''}),
         }
-
-

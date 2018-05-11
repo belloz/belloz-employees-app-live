@@ -2,142 +2,163 @@
 
 {% block body %}
 
-    <h1>Edit</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-						<div class="row mt-4">
+    <h1>Edit Employee</h1>
+    <small class="text-muted">
+        <i class="far fa-caret-square-down text-primary"></i> - Optional fields
+    </small>
 
-							<!-- First name: -->
-							<div class="col-sm-6 pb-3">
-								<label>First Name</label><br>
-								{{ form.first_name }}
-							</div>
-							<!-- Last name: -->
-							<div class="col-sm-6 pb-3">
-								<label>Last Name</label>
-                                {{ form.last_name }}
-							</div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row mt-4">
 
-                            <!-- E-mail: -->
-							<div class="col-sm-3 pb-3">
-								<label>Email</label>
-                                {{ form.email }}
-							</div>
+            <!-- First name: -->
+            <div class="col-sm-6 pb-3">
+                <label>First Name</label><br>
+                {{ form.first_name }}
+            </div>
+            <!-- Last name: -->
+            <div class="col-sm-6 pb-3">
+                <label>Last Name</label>
+                {{ form.last_name }}
+            </div>
 
-							<!-- Address: -->
-							<div class="col-sm-6 pb-3">
-								<label>Address</label>
-                                {{ form.address }}
-							</div>
+            <!-- E-mail: -->
+            <div class="col-sm-3 pb-3">
+                <label>E-mail <i class="far fa-caret-square-down text-primary"></i></label>
+                {{ form.email }}
+            </div>
 
-							<!-- Address #2 State: -->
-							<div class="col-sm-3 pb-3">
-								<label>State</label>
-								{{ form.state }}
-							</div>
-							<!-- Address #3 Postal Code: -->
-							<div class="col-sm-3 pb-3">
-								<label>Postal Code</label>
-                                {{ form.postal_code }}
-							</div>
+            <!-- B-day: -->
+            <div class="col-sm-3 pb-3">
+                <label>Date fo birth</label>
+                {{ form.date_of_birth }}
+            </div>
 
-							<!-- Phone number: -->
-							<div class="col-sm-3 pb-3">
-								<label>Phone number</label>
-                                {{ form.phone_number }}
-							</div>
+            <!-- Address: -->
+            <div class="col-sm-6 pb-3">
+                <label>Street / Apt</label>
+                {{ form.address }}
+            </div>
 
-							<!-- Datepicker Employed from -->
-							<div class="col-sm-3 pb-3">
-								<label>Employed From</label>
-							    {{ form.employed_from }}
-                            </div>
+            <!-- Address #2 State: -->
+            <div class="col-sm-3 pb-3">
+                <label>State</label>
+                {{ form.state }}
+            </div>
+            <!-- Address #3 Postal Code: -->
+            <div class="col-sm-3 pb-3">
+                <label>Postal Code</label>
+                {{ form.postal_code }}
+            </div>
 
-                            <!-- Datepicker Employed Until -->
-							<div class="col-sm-3 pb-3">
-								<label>Employed Until</label>
-                                {{ form.employed_until }}
-							</div>
+            <!-- Address #4 City: -->
+            <div class="col-sm-3 pb-3">
+                <label>City</label>
+                {{ form.city }}
+            </div>
 
-							<!-- SIN: -->
-							<div class="col-sm-5 pb-3">
-								<label>Social Insurance Number (SIN) #</label>
-                                {{ form.sin }}
-							</div>
-							<!-- Position: -->
-							<div class="col-sm-3 pb-3">
-								<label>Position</label>
-							    {{ form.position }}
-                            </div>
-							<!-- Salary: -->
-							<div class="col-sm-4 pb-3">
-								<label>Wage amount</label>
-								<div class="input-group">
-									<div class="input-group-addon">$</div>
-								    {{ form.wage }}
-                                </div>
-							</div>
+            <!-- Phone number: -->
+            <div class="col-sm-3 pb-3">
+                <label>Phone number</label>
+                {{ form.phone_number }}
+            </div>
 
-							<!-- Driver Lic No.: -->
-							<div class="col-sm-5 pb-3">
-								<label>Driver Lic No. #</label>
-                                {{ form.driver_lic }}
-							</div>
-							<!-- Immigration Status: -->
-							<div class="col-sm-3 pb-3">
-								<label>Immigration Status</label>
-								{{ form.status }}
-							</div>
-							<!-- Clothes Size: -->
-							<div class="col-sm-4 pb-3">
-								<label>Clothes Size</label>
-								<div class="input-group">
-									<div class="input-group-addon">#</div>
-										{{ form.clothes_size }}
-								</div>
-							</div>
+            <!-- Position: -->
+            <div class="col-sm-3 pb-3">
+                <label>Position</label>
+                {{ form.position }}
+            </div>
 
-							<!-- WHMIS: -->
-							<div class="col-sm-3 pb-3">
-								<label>WHMIS</label>
-								{{ form.whmis }}
-							</div>
-							<!-- Working at heights: -->
-							<div class="col-sm-3 pb-3">
-								<label>Working at heights</label>
-								{{ form.work_heights }}
-							</div>
-							<!-- Worker Health and Safety Awareness: -->
-							<div class="col-sm-3 pb-3">
-								<label>Worker Health and Safety</label>
-								{{ form.worker_health_safety }}
-							</div>
-							<!-- Propane in Construction: -->
-                            <div class="col-sm-3 pb-3">
-								<label>Propane in Construction</label>
-								{{ form.propane_in_construction }}
-							</div>
+            <!-- Salary / Wage: -->
+            <div class="col-sm-3 pb-3">
+                <label>Wage amount</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    {{ form.wage }}
+                </div>
+            </div>
 
-                            <div class="col-sm-2 pb-3"></div>
-							<!-- Note: -->
-							<div class="col-md-8 pb-3">
-								<label>Note</label>
-                                {{ form.note }}
-								<small class="text-muted">
-								  Add the packaging note here.
-								</small>
-								<!-- Buttons Cancel and Add: -->
-								<div class="form-group row">
-										<label class="col-md-6 col-form-label form-control-label"></label>
-										<div class="col-lg-9">
-                                            <a href="{% url 'employees_app:employees' %}" class="btn btn-outline-dark">Cancel</a>											</a>
-                                            <button type="submit" class="save btn btn-primary">Save</button>
+            <!-- Datepicker Employed from -->
+            <div class="col-sm-3 pb-3">
+                <label>Employed From</label>
+                {{ form.employed_from }}
+            </div>
 
-										</div>
-								</div>
+            <!-- Datepicker Employed Until -->
+            <div class="col-sm-3 pb-3">
+                <label>Employed Until <i class="far fa-caret-square-down text-primary"></i></label>
+                {{ form.employed_until }}
+            </div>
 
-							</div>
+            <!-- SIN: -->
+            <div class="col-sm-5 pb-3">
+                <label>Social Insurance Number (SIN) # <i class="far fa-caret-square-down text-primary"></i></label>
+                {{ form.sin }}
+            </div>
+
+
+            <!-- Driver Lic No.: -->
+            <div class="col-sm-5 pb-3">
+                <label>Driver Lic No. # <i class="far fa-caret-square-down text-primary"></i></label>
+                {{ form.driver_lic }}
+            </div>
+            <!-- Immigration Status: -->
+            <div class="col-sm-3 pb-3">
+                <label>Immigration Status</label>
+                {{ form.status }}
+            </div>
+            <!-- Clothes Size: -->
+            <div class="col-sm-2 pb-3">
+                <label>Clothes Size</label>
+                <div class="input-group">
+                    <div class="input-group-addon">#</div>
+                        {{ form.clothes_size }}
+                </div>
+            </div>
+
+            <!-- WHMIS: -->
+            <div class="col-sm-2 pb-3">
+                <label>WHMIS</label>
+                {{ form.whmis }}
+            </div>
+
+            <!-- Working at heights: -->
+            <div class="col-sm-2 pb-3">
+                <label>Working at heights</label>
+                {{ form.work_heights }}
+            </div>
+
+            <!-- Worker Health and Safety Awareness: -->
+            <div class="col-sm-3 pb-3">
+                <label>Worker Health and Safety</label>
+                {{ form.worker_health_safety }}
+            </div>
+
+            <!-- Propane in Construction: -->
+            <div class="col-sm-3 pb-3">
+                <label>Propane in Construction</label>
+                {{ form.propane_in_construction }}
+            </div>
+
+            <!-- Note: -->
+            <div class="col-md-9 pb-3">
+                <label>Note <i class="far fa-caret-square-down text-primary"></i></label>
+                {{ form.note }}
+                <small class="text-muted">
+                  Add the packaging note here.
+                </small>
+                <!-- Buttons Cancel and Save: -->
+                <div class="form-group row">
+                        <label class="col-md-6 col-form-label form-control-label"></label>
+                        <div class="col-lg-9">
+                            <a href="{% url 'employees_app:employees' %}" class="btn btn-outline-dark">Cancel</a>											</a>
+                            <button type="submit" class="save btn btn-primary">Save</button>
                         </div>
+                </div>
+
+            </div>
+        </div>
+
     </form>
 
 {% endblock %}
