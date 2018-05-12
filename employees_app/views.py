@@ -18,7 +18,8 @@ def employees(request):
     if query:
         employees_list = employees_list.filter(
             Q(first_name__icontains=query) |
-            Q(last_name__icontains=query)
+            Q(last_name__icontains=query) |
+            Q(phone_number__icontains=query)
         )
 
     return render(request, 'employees_app/employees.html', {'employees_list': employees_list, 'nbar': 'em', 'page_employees': "page_employees"})
