@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import AddEmployee
 from django.shortcuts import redirect
 from .models import Employees
+from django.db.models import Q
 from datetime import datetime
 # Create your views here.
 
@@ -12,7 +13,15 @@ def index(request):
 # Display Employees:
 def employees(request):
     employees_list = Employees.objects.all().order_by('last_name')
-    return render(request, 'employees_app/employees.html', {'employees_list': employees_list, 'nbar': 'em'})
+
+    query = request.GET.get("q")
+    if query:
+        employees_list = employees_list.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query)
+        )
+
+    return render(request, 'employees_app/employees.html', {'employees_list': employees_list, 'nbar': 'em', 'page_employees': "page_employees"})
 
 # Add Employee:
 def add_employee(request):
