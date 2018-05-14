@@ -1,0 +1,18 @@
+{% extends 'employees_app/base.html' %}
+
+{% block body %}
+
+    <h1>Add Employee</h1>
+    <small class="text-muted">
+        <i class="far fa-caret-square-down text-primary"></i> - Optional fields
+    </small>
+
+    <br>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'employees_app/form.html' %}
+    </form>
+
+
+{% endblock %}

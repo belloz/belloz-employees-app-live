@@ -1,0 +1,89 @@
+{% extends 'employees_app/base.html' %}
+
+{% block body %}
+    <br>
+    <h1>Employees List</h1>
+    <br>
+
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead class="thead-dark">
+        <tr>
+            <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">E-mail</th>
+
+            <th scope="col" class="col col-sm-2">Phone number</th>
+            <th scope="col">Position</th>
+            <th scope="col" class="">WSIB</th>
+            <th scope="col">WHMIS</th>
+            <th scope="col">Work on heights</th>
+            <th scope="col">W. Health Safety</th>
+            <th scope="col">Propane in construction</th>
+            <th scope="col">Edit</th>
+        </tr>
+      </thead>
+
+      {% for employee in employees_list %}
+      <tbody>
+        <td>{{ employee.last_name }}</td>
+        <td>{{ employee.first_name }}</td>
+        <td>{{ employee.email }}</td>
+
+        <td>{{ employee.phone_number }}</td>
+        <td>{{ employee.position }}</td>
+
+        <!-- WSIB -->
+        <td>
+            {% if employee.wsib == None %}
+                <button class="btn btn-outline-danger btn-sm">No</button>
+            {% else %}
+                <button class="btn btn-outline-success btn-sm">Yes</button>
+            {% endif %}
+        </td>
+
+        <!-- WHMIS -->
+        <td>
+            {% if employee.whmis == "Yes" %}
+                <button class="btn btn-outline-success btn-sm">{{ employee.whmis }}</button>
+            {% else %}
+                <button class="btn btn-outline-danger btn-sm">{{ employee.whmis }}</button>
+            {% endif %}
+        </td>
+
+        <!-- Work at Heights -->
+        <td>
+            {% if employee.work_heights == "Yes" %}
+                <button class="btn btn-outline-success btn-sm">{{ employee.work_heights }}</button>
+            {% else %}
+                <button class="btn btn-outline-danger btn-sm">{{ employee.work_heights }}</button>
+            {% endif %}
+        </td>
+
+        <!-- Worker Health and Safety -->
+        <td>
+            {% if employee.worker_health_safety == "Yes" %}
+                <button class="btn btn-outline-success btn-sm">{{ employee.worker_health_safety }}</button>
+            {% else %}
+                <button class="btn btn-outline-danger btn-sm">{{ employee.worker_health_safety }}</button>
+            {% endif %}
+        </td>
+
+        <!-- Propane in construction -->
+        <td>
+            {% if employee.propane_in_construction == "Yes" %}
+                <button class="btn btn-outline-success btn-sm">{{ employee.propane_in_construction }}</button>
+            {% else %}
+                <button class="btn btn-outline-danger btn-sm">{{ employee.propane_in_construction }}</button>
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="{% url 'employees_app:edit_employee' id=employee.id %}" class="btn btn-outline-primary btn-sm">EDIT</a>
+        </td>
+      </tbody>
+      {% endfor %}
+    </table>
+
+
+
+{% endblock %}
