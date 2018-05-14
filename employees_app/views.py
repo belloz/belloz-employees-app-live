@@ -4,12 +4,17 @@ from django.shortcuts import redirect
 from .models import Employees
 from django.db.models import Q
 from datetime import datetime
+# Login required
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required
 def index(request):
     return render(request, 'employees_app/index.html', {'nbar': 'home'})
 
+
+@login_required
 # Display Employees:
 def employees(request):
     employees_list = Employees.objects.all().order_by('last_name')
@@ -24,6 +29,8 @@ def employees(request):
 
     return render(request, 'employees_app/employees.html', {'employees_list': employees_list, 'nbar': 'em', 'page_employees': "page_employees"})
 
+
+@login_required
 # Add Employee:
 def add_employee(request):
     if request.method == "POST":
@@ -38,6 +45,7 @@ def add_employee(request):
     return render(request, 'employees_app/add_employee.html', {'form': form, 'nbar': 'add_em'})
 
 
+@login_required
 # Edit Employee:
 def edit_employee(request, id):
     employee = Employees.objects.get(id=id)
@@ -50,11 +58,15 @@ def edit_employee(request, id):
         form = AddEmployee(instance=employee)
     return render(request, 'employees_app/edit_employee.html', {'form': form})
 
+
 # Remove Employee:
-#def remove_employee(request, id):
+# def remove_employee(request, id):
 #    employee = Employees.objects.id(id=id)
 #    employee.delete()
 #    return redirect('employees_app:employees')
+
+
+
 
 # 404 Error:
 def error404(request):

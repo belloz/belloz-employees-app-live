@@ -29,7 +29,8 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-
+        <!-- Display Menu only if user is logged in -->
+        {% if user.is_authenticated %}
           <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
             <a class="nav-link" href="{% url 'employees_app:index' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
           </li>
@@ -39,7 +40,13 @@
           <li class="nav-item {% if nbar == 'add_em' %}active{% endif %}">
             <a class="nav-link" href="{% url 'employees_app:add_employee' %}" data-toggle="tooltip" data-placement="bottom" title="Add Employee"><i class="fas fa-user-plus"></i></a>
           </li>
-
+          <li class="nav-item">
+            <a onclick="printPage()" class="nav-link" href="" data-toggle="tooltip" data-placement="bottom" title="Print"><i class="fas fa-print"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" data-toggle="tooltip" data-placement="bottom" title="Log Out"><i class="fas fa-door-open"></i></a>
+          </li>
+        {% endif %}
         </ul>
         {% if page_employees == "page_employees" %}
         <form class="form-inline my-2 my-lg-0">
@@ -73,6 +80,12 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+    </script>
+
+    <script>
+        function printPage() {
+            window.print();
+        }
     </script>
 
   </body>
