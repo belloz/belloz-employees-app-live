@@ -6,6 +6,11 @@ from datetime import datetime
 def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.id), filename)
 
+
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.id), filename)
+
+
 class Employees(models.Model):
 
     STATE = (
